@@ -118,7 +118,7 @@ ENV_LINKER_ARGS += -lisal -L$(ISAL_DIR)/.libs
 endif
 
 ifneq (,$(wildcard $(DPDK_INC_DIR)/rte_config.h))
-ifneq (,$(shell grep -e "define RTE_LIBRTE_VHOST_NUMA 1" -e "define RTE_EAL_NUMA_AWARE_HUGEPAGES 1" $(DPDK_INC_DIR)/rte_config.h))
+ifneq (,$(shell $(CC) -dM -E $(DPDK_INC_DIR)/rte_config.h | grep -e "define RTE_LIBRTE_VHOST_NUMA 1" -e "define RTE_EAL_NUMA_AWARE_HUGEPAGES 1"))
 ENV_LINKER_ARGS += -lnuma
 endif
 endif
