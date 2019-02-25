@@ -55,7 +55,7 @@ DEPDIRS-ocf := ocf/env
 endif
 
 ifeq ($(OS),Linux)
-DIRS-y += aio
+DIRS-$(CONFIG_AIO) += aio
 DIRS-$(CONFIG_ISCSI_INITIATOR) += iscsi
 DIRS-$(CONFIG_VIRTIO) += virtio
 DIRS-$(CONFIG_PMDK) += pmem
