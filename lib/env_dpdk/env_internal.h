@@ -64,7 +64,7 @@
 #define MASK_1GB	((1ULL << SHIFT_1GB) - 1)
 
 #define SPDK_PMD_REGISTER_PCI(pci_drv)									\
-__attribute__((constructor)) static void pci_drv ## _register(void)					\
+__attribute__((constructor)) void pci_drv ## _register(void)					\
 {													\
 	spdk_pci_driver_register(&pci_drv);								\
 }

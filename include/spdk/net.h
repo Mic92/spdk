@@ -65,7 +65,7 @@ struct spdk_net_framework {
 void spdk_net_framework_register(struct spdk_net_framework *frame);
 
 #define SPDK_NET_FRAMEWORK_REGISTER(name, frame) \
-static void __attribute__((constructor)) net_framework_register_##name(void) \
+void __attribute__((constructor)) net_framework_register_##name(void) \
 { \
 	spdk_net_framework_register(frame); \
 }

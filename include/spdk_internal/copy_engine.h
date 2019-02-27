@@ -87,7 +87,7 @@ void spdk_copy_module_list_add(struct spdk_copy_module_if *copy_module);
 	.config_text	= config_fn,									\
 	.get_ctx_size	= ctx_size_fn,									\
 	};												\
-	__attribute__((constructor)) static void init_fn ## _init(void)					\
+	__attribute__((constructor)) void init_fn ## _init(void)					\
 	{												\
 		spdk_copy_module_list_add(&init_fn ## _if);						\
 	}

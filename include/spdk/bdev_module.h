@@ -1015,7 +1015,7 @@ uint64_t spdk_bdev_part_get_offset_blocks(struct spdk_bdev_part *part);
  *  Macro used to register module for later initialization.
  */
 #define SPDK_BDEV_MODULE_REGISTER(name, module) \
-static void __attribute__((constructor)) spdk_bdev_module_register_##name(void) \
+void __attribute__((constructor)) spdk_bdev_module_register_##name(void) \
 { \
 	spdk_bdev_module_list_add(module); \
 } \

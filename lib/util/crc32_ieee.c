@@ -35,7 +35,7 @@
 
 static struct spdk_crc32_table g_crc32_ieee_table;
 
-__attribute__((constructor)) static void
+__attribute__((constructor)) void
 spdk_crc32_ieee_init(void)
 {
 	spdk_crc32_table_init(&g_crc32_ieee_table, SPDK_CRC32_POLYNOMIAL_REFLECT);

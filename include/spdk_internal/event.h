@@ -112,7 +112,7 @@ void spdk_rpc_finish(void);
  * \brief Register a new subsystem
  */
 #define SPDK_SUBSYSTEM_REGISTER(_name) \
-	__attribute__((constructor)) static void _name ## _register(void)	\
+	__attribute__((constructor)) void _name ## _register(void)	\
 	{									\
 		spdk_add_subsystem(&_name);					\
 	}
@@ -125,7 +125,7 @@ void spdk_rpc_finish(void);
 	.name = #_name,										\
 	.depends_on = #_depends_on,								\
 	};											\
-	__attribute__((constructor)) static void _name ## _depend_on ## _depends_on(void)	\
+	__attribute__((constructor)) void _name ## _depend_on ## _depends_on(void)	\
 	{											\
 		spdk_add_subsystem_depend(&__subsystem_ ## _name ## _depend_on ## _depends_on); \
 	}

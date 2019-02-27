@@ -62,7 +62,7 @@ struct spdk_log_flag flag = { \
 	.enabled = false, \
 	.name = str, \
 }; \
-__attribute__((constructor)) static void register_flag_##flag(void) \
+__attribute__((constructor)) void register_flag_##flag(void) \
 { \
 	spdk_log_register_flag(str, &flag); \
 }
