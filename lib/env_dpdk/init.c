@@ -343,7 +343,15 @@ spdk_build_eal_cmdline(const struct spdk_env_opts *opts)
 		}
 
 		/* set the process type */
-		args = spdk_push_arg(args, &argcount, _sprintf_alloc("--proc-type=auto"));
+
+		const char *proc_type = "auto";
+		if (opts->proc_type == PROC_TYPE_PRIMARY) {
+			const char *proc_type = "primary";
+		} else if (opts->proc_type == PROC_TYPE_SECONDARY ) {
+			const char *proc_type = "secondary";
+		}
+
+		args = spdk_push_arg(args, &argcount, _sprintf_alloc("--proc-type=%s", proc_type));
 		if (args == NULL) {
 			return -1;
 		}

@@ -70,6 +70,9 @@ extern "C" {
 /**
  * \brief Environment initialization options
  */
+
+enum proc_type { PROC_TYPE_PRIMARY = 0, PROC_TYPE_SECONDARY = 1, PROC_TYPE_AUTO = 2 };
+
 struct spdk_env_opts {
 	const char		*name;
 	const char		*core_mask;
@@ -77,6 +80,7 @@ struct spdk_env_opts {
 	int			mem_channel;
 	int			master_core;
 	int			mem_size;
+	enum proc_type	proc_type;
 	bool			no_pci;
 	bool			hugepage_single_segments;
 	bool			unlink_hugepage;
