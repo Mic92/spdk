@@ -201,7 +201,11 @@ static int nvme_pcie_ctrlr_attach(struct spdk_nvme_probe_ctx *probe_ctx,
 static int nvme_pcie_qpair_construct(struct spdk_nvme_qpair *qpair);
 static int nvme_pcie_qpair_destroy(struct spdk_nvme_qpair *qpair);
 
-__thread struct nvme_pcie_ctrlr *g_thread_mmio_ctrlr = NULL;
+// This used to be thread-local, however we cannot use TLS in kernel threads.
+// For the meantime we will only support a single NVME controller.
+// Also relying on TLS in signal-handlers should not work in general:
+// https://github.com/spdk/spdk/issues/712
+struct nvme_pcie_ctrlr *g_thread_mmio_ctrlr = NULL;
 static volatile uint16_t g_signal_lock;
 static bool g_sigset = false;
 static int hotplug_fd = -1;
